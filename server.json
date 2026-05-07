@@ -1,0 +1,412 @@
+{
+  "$schema": "https://registry.mcp.so/schema/server.json",
+  "name": "unstoppable-domains",
+  "displayName": "Unstoppable Domains",
+  "description": "Search, register, and manage domain names through natural conversation. 60 tools for domain search, DNS management, marketplace listings, cart/checkout, backorders, AI landing pages, and portfolio management.",
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://unstoppabledomains.com",
+  "repository": "https://github.com/unstoppabledomains/mcp-server",
+  "support": {
+    "email": "support@unstoppabledomains.com",
+    "url": "https://support.unstoppabledomains.com"
+  },
+  "vendor": {
+    "name": "Unstoppable Domains",
+    "url": "https://unstoppabledomains.com"
+  },
+  "server": {
+    "type": "http",
+    "url": "https://api.unstoppabledomains.com/mcp/v1/"
+  },
+  "authentication": {
+    "type": "oauth2",
+    "authorizationUrl": "https://unstoppabledomains.com/oauth2/authorize",
+    "tokenUrl": "https://unstoppabledomains.com/oauth2/token",
+    "scopes": [
+      { "name": "domains:search", "description": "Search domains and check availability" },
+      { "name": "portfolio:read", "description": "View your domains, DNS records, and offers" },
+      { "name": "portfolio:write", "description": "Manage DNS, create listings, and send messages" },
+      { "name": "cart:read", "description": "View cart and payment methods" },
+      { "name": "cart:write", "description": "Add and remove cart items" },
+      { "name": "checkout", "description": "Complete purchases" }
+    ],
+    "apiKeyAlternative": {
+      "type": "bearer",
+      "header": "Authorization",
+      "prefix": "Bearer",
+      "format": "ud_mcp_*",
+      "description": "API key from Account Settings → Advanced → MCP API Key"
+    }
+  },
+  "tools": [
+    {
+      "name": "ud_domains_search",
+      "title": "Search Domain Availability",
+      "description": "Search for domain availability and pricing across TLDs. Up to 10 queries and 5 TLDs per request. Returns marketplace.source and marketplace.status to determine which cart tool to use.",
+      "readOnlyHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_tld_list",
+      "title": "List Available TLDs",
+      "description": "List all ICANN TLDs supported by the registrar. Call before searching specific TLDs to verify support.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_expireds_list",
+      "title": "Browse Expiring Domains",
+      "description": "Browse the pending-delete / expireds marketplace. Domains spend 5 days in COMING_SOON then drop to AVAILABLE_BACKORDER. Filter by status, TLD, label length. Up to 500 results per call.",
+      "readOnlyHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_knowledge_base_search",
+      "title": "Search Help Articles",
+      "description": "Search the Unstoppable Domains Knowledge Base for help articles by keyword. Returns articles ranked by relevance with titles, snippets, and direct links. No authentication required.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_portfolio_list",
+      "title": "List Portfolio Domains",
+      "description": "List domains with filtering and sorting. Use for portfolio-wide scans, rankings, aggregates. Returns per-domain offersCount, leadsCount, watchlistCount, listing price/status. Page size up to 500.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_domain_get",
+      "title": "Get Domain Details",
+      "description": "Comprehensive domain info for up to 50 explicitly named domains. Returns lifecycle (renewal, expiration, auto-renewal), flags, DNS config, marketplace metrics, tags, and pending operations.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_contacts_list",
+      "title": "List ICANN Contacts",
+      "description": "List ICANN contacts for DNS domain registration. Check before creating new contacts.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_contact_create",
+      "title": "Create ICANN Contact",
+      "description": "Create an ICANN contact required for DNS domain registration (.com, .org, .net, etc.). Use the account email for instant verification.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_cart_get",
+      "title": "View Shopping Cart",
+      "description": "Get current shopping cart contents with pricing breakdown.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_cart_add_domain_registration",
+      "title": "Add Domain Registration to Cart",
+      "description": "Add domains for fresh registration. For marketplace.source='unstoppable_domains' with marketplace.status='available'. Max 50 domains.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_cart_add_domain_listed",
+      "title": "Add Listed Domain to Cart",
+      "description": "Add UD marketplace domains to cart. For marketplace.source='unstoppable_domains' with marketplace.status='registered-listed-for-sale'. Supports Lease-to-Own. Max 50.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_cart_add_domain_afternic",
+      "title": "Add Afternic Domain to Cart",
+      "description": "Add Afternic marketplace domains to cart. For marketplace.source='afternic'. Max 50.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_cart_add_domain_sedo",
+      "title": "Add Sedo Domain to Cart",
+      "description": "Add Sedo marketplace domains to cart. For marketplace.source='sedo'. Max 50.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_cart_add_domain_renewal",
+      "title": "Add Domain Renewal to Cart",
+      "description": "Add domain renewals to cart. 1–10 years per domain. Max 50.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_cart_remove",
+      "title": "Remove Cart Item",
+      "description": "Remove items from the shopping cart."
+    },
+    {
+      "name": "ud_cart_get_payment_methods",
+      "title": "Get Payment Methods",
+      "description": "Get saved credit cards and account balance for checkout.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_cart_add_payment_method_url",
+      "title": "Get Add Payment Method URL",
+      "description": "Get an authenticated magic link URL to add a new payment method. Valid 60 seconds, single-use.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_cart_checkout",
+      "title": "Checkout Cart",
+      "description": "Complete checkout. Requires ICANN contact for DNS domains. Uses account balance by default; pass paymentMethodId if balance is insufficient.",
+      "destructiveHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_cart_get_url",
+      "title": "Get Checkout URL",
+      "description": "Generate an authenticated magic link checkout URL for browser purchase. Valid 60 seconds, single-use.",
+      "readOnlyHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_listing_create",
+      "title": "Create Marketplace Listing",
+      "description": "Create marketplace listings (max 50). Set price, offer settings, validity, and LTO options. Response may include a signing magic link.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_listing_update",
+      "title": "Update Marketplace Listing",
+      "description": "Update existing marketplace listings (max 50). May require re-signing.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_listing_cancel",
+      "title": "Cancel Marketplace Listing",
+      "description": "Cancel marketplace listings (max 50).",
+      "destructiveHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_offers_list",
+      "title": "List Domain Offers",
+      "description": "List incoming offers on your domains. Filter by status and domain.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_offer_respond",
+      "title": "Respond to Offer",
+      "description": "Accept or reject offers (max 50). Acceptance may require signing.",
+      "destructiveHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_leads_list",
+      "title": "List Domain Conversations",
+      "description": "List conversation threads. Filter by domain. skipEmpty: true (default) hides empty threads.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_lead_get",
+      "title": "Get or Create Conversation",
+      "description": "Get or create a conversation for a domain. Returns existing or creates new.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_lead_messages_list",
+      "title": "List Conversation Messages",
+      "description": "Get messages in a conversation (newest-first, cursor pagination).",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_lead_message_send",
+      "title": "Send Conversation Message",
+      "description": "Send a message in a conversation (max 1000 characters).",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_dns_records_list",
+      "title": "List DNS Records",
+      "description": "List all DNS records for a domain. Filter by type and subName.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_dns_record_add",
+      "title": "Add DNS Records",
+      "description": "Add DNS records (max 50). Supports A, AAAA, CNAME, MX, TXT, NS, SRV, CAA. upsertMode: append, replace, or disallowed (default). Supports applyToAllDomainsInPortfolio.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_dns_record_update",
+      "title": "Update DNS Record",
+      "description": "Update an existing DNS record by record ID. Max 50.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_dns_record_remove",
+      "title": "Remove DNS Record",
+      "description": "Remove a specific DNS record by ID. Max 50.",
+      "destructiveHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_dns_records_remove_all",
+      "title": "Remove All DNS Records",
+      "description": "Remove ALL DNS records from a domain. Requires confirmDeleteAll: true. Supports applyToAllDomainsInPortfolio.",
+      "destructiveHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_dns_nameservers_list",
+      "title": "List Nameservers",
+      "description": "List nameservers for a domain. Shows UD default vs custom status and DNSSEC info.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_dns_nameservers_set_custom",
+      "title": "Set Custom Nameservers",
+      "description": "Set custom external nameservers (2–12 hostnames). Optional DNSSEC DS records. Disables DNS record management. Supports applyToAllDomainsInPortfolio.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_dns_nameservers_set_default",
+      "title": "Reset to Default Nameservers",
+      "description": "Switch back to UD default nameservers. Re-enables DNS record management. Supports applyToAllDomainsInPortfolio.",
+      "destructiveHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_dns_hosting_list",
+      "title": "List Hosting Configurations",
+      "description": "List hosting configurations for a domain (listing pages, redirects).",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_dns_hosting_add",
+      "title": "Add Hosting Configuration",
+      "description": "Add hosting config: LISTING_PAGE, REDIRECT_301, or REDIRECT_302. forceCompatibility: true auto-switches nameservers. Supports applyToAllDomainsInPortfolio.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_dns_hosting_remove",
+      "title": "Remove Hosting Configuration",
+      "description": "Remove hosting configuration. deleteAll: true with confirmDeleteAll: true removes all. Supports applyToAllDomainsInPortfolio.",
+      "destructiveHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_domain_pending_operations",
+      "title": "Get Pending Operations",
+      "description": "List pending operations across domains (up to 50). Use after DNS changes to track propagation.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_domain_auto_renewal_update",
+      "title": "Update Auto-Renewal",
+      "description": "Enable or disable auto-renewal for ICANN domains. Supports applyToAllDomainsInPortfolio."
+    },
+    {
+      "name": "ud_domain_tags_add",
+      "title": "Add Domain Tags",
+      "description": "Add tags (up to 10 tags, 20 chars each). Auto-creates new tags. Supports applyToAllDomainsInPortfolio."
+    },
+    {
+      "name": "ud_domain_tags_remove",
+      "title": "Remove Domain Tags",
+      "description": "Remove tags. Idempotent — skips unapplied tags. Supports applyToAllDomainsInPortfolio."
+    },
+    {
+      "name": "ud_domain_flags_update",
+      "title": "Update Domain Flags",
+      "description": "Update WHOIS privacy and transfer lock flags. Supports applyToAllDomainsInPortfolio.",
+      "destructiveHint": true
+    },
+    {
+      "name": "ud_domain_push",
+      "title": "Push Domain to Another User",
+      "description": "Transfer domains to another user by account ID. Requires MFA (6-digit OTP). Max 50.",
+      "destructiveHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_backorder_create",
+      "title": "Create Domain Backorder",
+      "description": "Create backorders for expiring domains. Requires ICANN contact and availability timestamp. Max 50.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_backorders_list",
+      "title": "List Backorders",
+      "description": "List user backorders with status filtering, search, and pagination.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_backorder_cancel",
+      "title": "Cancel Backorder",
+      "description": "Cancel pending backorders. Returns refund information.",
+      "destructiveHint": true
+    },
+    {
+      "name": "ud_ai_credits_get",
+      "title": "Get AI Credit Balance",
+      "description": "Check AI credit balance and view available packs. New accounts get 5 free credits.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_cart_add_ai_credits",
+      "title": "Add AI Credits to Cart",
+      "description": "Add an AI credit pack to cart by productCode or tierSize.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_domain_generate_lander",
+      "title": "Generate AI Landing Page",
+      "description": "Generate AI-powered landing pages. 1 credit per domain. Custom instructions supported. Async. Supports applyToAllDomainsInPortfolio.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_domain_lander_status",
+      "title": "Check Lander Status",
+      "description": "Check generation status: pending, generating, processing, hosted, failed, or none. Max 50.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_domain_download_lander",
+      "title": "Download Landing Page",
+      "description": "Download lander content. Returns htmlContent (single-page) or zipContent (base64 zip).",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_domain_upload_lander",
+      "title": "Upload Custom Landing Page",
+      "description": "Upload custom lander (HTML or base64 zip). Requires Domainer Club. Max 1MB. Supports applyToAllDomainsInPortfolio.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_domain_remove_lander",
+      "title": "Remove Landing Page",
+      "description": "Remove an AI landing page from a domain. Supports applyToAllDomainsInPortfolio.",
+      "destructiveHint": true,
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_presets_list",
+      "title": "List DNS Presets",
+      "description": "List saved DNS presets and hardcoded provider presets.",
+      "readOnlyHint": true
+    },
+    {
+      "name": "ud_presets_save",
+      "title": "Save DNS Preset",
+      "description": "Create or update a preset (nameserver, DNS record, forwarding). Upserts by name."
+    },
+    {
+      "name": "ud_presets_delete",
+      "title": "Delete DNS Preset",
+      "description": "Delete a saved preset by type and name.",
+      "destructiveHint": true
+    },
+    {
+      "name": "ud_presets_apply",
+      "title": "Apply DNS Preset",
+      "description": "Apply a preset to domains. Supports bulk and portfolio-wide operations.",
+      "openWorldHint": true
+    },
+    {
+      "name": "ud_authenticated_url_get",
+      "title": "Get Authenticated URL",
+      "description": "Generate a one-time authenticated URL for browser redirect. Valid 60 seconds, single-use.",
+      "readOnlyHint": true,
+      "openWorldHint": true
+    }
+  ]
+}
