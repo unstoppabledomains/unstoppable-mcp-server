@@ -1,6 +1,8 @@
 {
-  "unstoppable-domains": {
-    "type": "http",
-    "url": "https://api.unstoppabledomains.com/mcp/v1/"
+  "mcpServers": {
+    "unstoppable-domains": {
+      "type": "http",
+      "url": "https://api.unstoppabledomains.com/mcp/v1/"
+    }
   }
 }

@@ -117,7 +117,9 @@ Use as a Bearer token: `Authorization: Bearer ud_mcp_your_key_here`
 
 ## Tools
 
-60 tools across 16 categories. See [tools.md](tools.md) for the full reference.
+60 tools across 16 categories. See [tools.md](tools.md) for the full reference and [tool-annotations.reference.json](tool-annotations.reference.json) for the engineering reference (annotations to be returned by the live server in `tools/list`).
+
+> **Note:** The Unstoppable Domains [developer docs](https://docs.unstoppabledomains.com/user-api/) and the OpenAPI spec at `apis/user-api/openapi.json` in the dev-docs repo are currently outdated and missing several tools. The 60-tool list in this repo (sourced from `skills/domains/tools-full.md` in the skills repo) reflects the live server's actual tool surface.
 
 | Category | Tools |
 |----------|-------|
@@ -172,6 +174,12 @@ Use as a Bearer token: `Authorization: Bearer ud_mcp_your_key_here`
 - **Support:** [support.unstoppabledomains.com](https://support.unstoppabledomains.com)
 - **Email:** [support@unstoppabledomains.com](mailto:support@unstoppabledomains.com)
 - **Issues:** [github.com/unstoppabledomains/mcp-server/issues](https://github.com/unstoppabledomains/mcp-server/issues)
+
+---
+
+## Repository Status
+
+This is a seed repository — see [KNOWN-ISSUES.md](KNOWN-ISSUES.md) for the list of items that need engineering, legal, or org-admin attention before submitting to MCP directories.
 
 ---
 
