@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/icon.png" alt="Unstoppable Domains" width="160" height="160" />
+</p>
+
 # Unstoppable Domains MCP Server
 
 > Search, register, and manage domain names through natural conversation with AI assistants.
