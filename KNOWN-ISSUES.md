@@ -4,8 +4,8 @@ This is a seed repo. Items below need engineering, legal, or org-admin attention
 
 ## Repo location
 
-- [ ] **Transfer to `unstoppabledomains` org.** Currently at `gm-ud/unstoppable-mcp-server`. Submission forms (Anthropic, OpenAI, Cline, glama) expect the canonical org-owned URL.
-- [ ] Update `repository.url` in `server.json` after transfer (currently points at `unstoppabledomains/mcp-server` which doesn't exist yet).
+- [x] **Transferred to `unstoppabledomains` org** at [unstoppabledomains/unstoppable-mcp-server](https://github.com/unstoppabledomains/unstoppable-mcp-server).
+- [x] `repository.url` in `server.json` updated to the new path.
 
 ## Tool annotations (engineering work)
 

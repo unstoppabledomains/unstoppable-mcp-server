@@ -6,7 +6,7 @@
   "version": "1.0.0",
   "websiteUrl": "https://unstoppabledomains.com",
   "repository": {
-    "url": "https://github.com/unstoppabledomains/mcp-server",
+    "url": "https://github.com/unstoppabledomains/unstoppable-mcp-server",
     "source": "github"
   },
   "remotes": [

@@ -173,7 +173,7 @@ Use as a Bearer token: `Authorization: Bearer ud_mcp_your_key_here`
 - **Documentation:** [docs.unstoppabledomains.com](https://docs.unstoppabledomains.com/user-api/mcp-server)
 - **Support:** [support.unstoppabledomains.com](https://support.unstoppabledomains.com)
 - **Email:** [support@unstoppabledomains.com](mailto:support@unstoppabledomains.com)
-- **Issues:** [github.com/unstoppabledomains/mcp-server/issues](https://github.com/unstoppabledomains/mcp-server/issues)
+- **Issues:** [github.com/unstoppabledomains/unstoppable-mcp-server/issues](https://github.com/unstoppabledomains/unstoppable-mcp-server/issues)
 
 ---
 
